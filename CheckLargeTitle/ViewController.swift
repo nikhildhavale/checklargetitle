@@ -26,6 +26,26 @@ class ViewController: UIViewController {
         let rightone = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .done, target: nil, action: nil)
         let rightsecond = UIBarButtonItem(image: UIImage(systemName: "message"), style: .done, target: nil, action: nil)
         self.navigationItem.rightBarButtonItems = [rightone,rightsecond]
+        let vc = UIViewController()
+        let searchController = UISearchController(searchResultsController: vc)
+        self.navigationItem.searchController = searchController
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        searchController.searchBar.addSubview(button)
+        button.topAnchor.constraint(equalTo: searchController.searchBar.topAnchor).isActive = true
+        button.bottomAnchor.constraint(equalTo: searchController.searchBar.bottomAnchor).isActive = true
+        button.leadingAnchor.constraint(equalTo: searchController.searchBar.leadingAnchor).isActive = true
+        button.trailingAnchor.constraint(equalTo: searchController.searchBar.trailingAnchor).isActive = true
+        button.backgroundColor = .clear
+        button.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
+        
+    }
+    @objc func showAlert()
+    {
+        let alertVc = UIAlertController(title: "Test", message: "test", preferredStyle: .actionSheet)
+        alertVc.addAction(UIAlertAction(title: "test", style: .default))
+        alertVc.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(alertVc, animated: true)
         
     }
     override func viewWillAppear(_ animated:Bool)
